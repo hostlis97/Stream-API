@@ -27,12 +27,11 @@ public class Main {
                 .collect(Collectors.toList());
         System.out.println(conscripts);
 
-        List<String> educated = persons.stream()
+        List<Person> educated = persons.stream()
                 .filter(person -> person.getEducation() == Education.HIGHER)
                 .filter(person -> person.getAge() > 17)
                 .filter(person -> person.getSex() == Sex.WOMAN && person.getAge() < 60 || person.getSex() == Sex.MAN && person.getAge() < 65)
-                .map(Person::getFamily)
-                .sorted(Comparator.naturalOrder())
+                .sorted(Comparator.comparing(Person::getFamily))
                 .collect(Collectors.toList());
         System.out.println(educated);
 
